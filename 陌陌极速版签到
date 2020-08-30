@@ -1,0 +1,17 @@
+/*=================================
+关注微信公众号iosrule和微信群
+
+#陌陌极速版App签到
+https:\/\/mk\.immomo\.com\/activity\/fastsign\/index\/signIn? url script-request-body momosign.js
+
+#定时
+0 2,13,25,45,55 0-23 * * ? momosign.js, tag=陌陌极速版签到, enabled=false
+
+mit=mk.immomo.com
+
+//====================================
+
+#loon 陌陌极速版App签到
+http-request https:\/\/mk\.immomo\.com\/activity\/fastsign\/index\/signIn? script-path=momosign.js, requires-body=true, timeout=30, tag=陌陌极速版
+
+mit=mk.immomo.com
