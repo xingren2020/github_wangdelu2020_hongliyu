@@ -19,7 +19,7 @@ mit=mobile01.91quzou.com
 //====================================
 
 #loon 趣走App签到
-http-request https:\/\/mobile01\.91quzou\.com\/rebate\/qz\/task\/homeTaskView\.do script-path=quwalk.js, requires-body=true, timeout=30, tag=趣走签到
+http-request https:\/\/mobile01\.91quzou\.com\/rebate\/qz\/task\/homeTaskView\.do script-path=quwalk2.2.js, requires-body=true, timeout=30, tag=趣走签到
 
 mit=mobile01.91quzou.com
 
