@@ -6,21 +6,26 @@ by红鲤鱼绿鲤鱼与驴
 https://raw.githubusercontent.com/wangdelu2020/hongliyu/master/wxdaka.js
 
 
-#QX 微信签到打卡小程序App签到
-https:\/\/(www\.baimaa\.com|www\.2xtj7\.cn)\/app\/index\.php? url script-request-header wxdaka.js
+#QX 远程订阅微信签到打卡小程序App签到
+https:\/\/(www\.baimaa\.com|www\.2xtj7\.cn|www\.hnmiaosu\.cc)\/app\/index\.php? url script-request-header https://raw.githubusercontent.com/wangdelu2020/hongliyu/master/wxdaka.js
+
+
+
+#QX 本地文件微信签到打卡小程序App签到
+https:\/\/(www\.baimaa\.com|www\.2xtj7\.cn|www\.hnmiaosu\.cc)\/app\/index\.php? url script-request-header wxdaka.js
 
 #定时
 0 2,13,25,45,55 0-23 * * ? wxdaka.js, tag=微信小程序打卡签到, enabled=false
 
-mit=www.2xtj7.cn,www.baimaa.com
+mit=www.2xtj7.cn,www.baimaa.com,www.hnmiaosu.cc
 
 //====================================
 
 #loon 微信签到打卡小程序App签到
 
-http-request https:\/\/(www\.baimaa\.com|www\.2xtj7\.cn)\/app\/index\.php? script-path=wxdaka.js, requires-header=true, timeout=30, tag=微信打卡小程序
+http-request https:\/\/(www\.baimaa\.com|www\.2xtj7\.cn|www\.hnmiaosu\.cc)\/app\/index\.php? script-path=https://raw.githubusercontent.com/wangdelu2020/hongliyu/master/wxdaka.js, requires-header=true, timeout=30, tag=微信打卡小程序
 
-mit=www.2xtj7.cn,www.baimaa.com
+mit=www.2xtj7.cn,www.baimaa.com,www.hnmiaosu.cc
 
 #定时间隔5分
 
@@ -34,8 +39,8 @@ const $iosrule = iosrule();
 
 const log=1;//设置0关闭日志,1开启日志
 
-var mit=["www.2xtj7.cn","www.baimaa.com"];
-var tt=["天天打卡赚钱","音乐line"];
+var mit=["www.2xtj7.cn","www.baimaa.com","www.hnmiaosu.cc"];
+var tt=["小打卡赚钱(20次打卡)","音乐line(10次)"," 天天打卡赚赚(9次)"];
 
 
 //++++++++++++++++++++++++++++++++-
@@ -60,7 +65,8 @@ var wxbdname="wxbdname";
  {
 let s0=await iosrule_sign(0);
 let s1=await iosrule_sign(1);
- papa(weixin_iosrule,"",s0+s1);
+let s2=await iosrule_sign(2);
+ papa(weixin_iosrule,"",s0+s1+s2);
    
 }
 
