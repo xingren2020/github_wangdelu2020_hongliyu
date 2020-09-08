@@ -2,6 +2,9 @@
 关注微信公众号iosrule和微信群,2020.9.8
 by红鲤鱼绿鲤鱼与驴
 
+#欢迎微信撸金币群提出靠谱打卡小程序方便更新。远程库订阅
+https://raw.githubusercontent.com/wangdelu2020/hongliyu/master/wxdaka.js
+
 
 #QX 微信签到打卡小程序App签到
 https:\/\/(www\.baimaa\.com|www\.2xtj7\.cn)\/app\/index\.php? url script-request-header wxdaka.js
@@ -13,7 +16,7 @@ mit=www.2xtj7.cn,www.baimaa.com
 
 //====================================
 
-#loon 陌陌极速版App签到
+#loon 微信签到打卡小程序App签到
 
 http-request https:\/\/(www\.baimaa\.com|www\.2xtj7\.cn)\/app\/index\.php? script-path=wxdaka.js, requires-header=true, timeout=30, tag=微信打卡小程序
 
@@ -30,6 +33,7 @@ mit=www.2xtj7.cn,www.baimaa.com
 const $iosrule = iosrule();
 
 const log=1;//设置0关闭日志,1开启日志
+
 var mit=["www.2xtj7.cn","www.baimaa.com"];
 var tt=["天天打卡赚钱","音乐line"];
 
@@ -50,44 +54,24 @@ var wxbdname="wxbdname";
 //++++++++++++++++++++++++++++++++
 
 
-function main()
-{
-iosrule_begin();
+
+
+ async function iosrule_begin()
+ {
+let s0=await iosrule_sign(0);
+let s1=await iosrule_sign(1);
+ papa(weixin_iosrule,"",s0+s1);
+   
 }
 
 
 
-if ($iosrule.isRequest) {
-  iosrule_getck()
-  $iosrule.end()
-} else {
-  main();
-  $iosrule.end()
-  
-  
-  
-}
 
 
-function iosrule_begin()
-{var shuai;
-for (var i = 0; i < mit.length; i++) {
-      (function(i) {
-        setTimeout(function() {
- 
- 
-    shuai+=iosrule_sign(i);
-    if(i==mit.length-1)
-    papa(weixin_iosrule,"",shuai);
-    
-   }, (i + 1) * 1000);
-               })(i)
-  }
   
   
   
-  
-}
+
 
 
 function iosrule_sign(t)
@@ -97,18 +81,16 @@ function iosrule_sign(t)
    var result1=tt[t];
    var result2="";
 
-   var wxurl=$iosrule.read(wxurlame+t);
-    var wxhd=$iosrule.read(wxhdname+t);
+var wxurl=$iosrule.read("wxurlname"+t);
+var wxhd=$iosrule.read("wxhdname"+t);
 
   const llUrl1={
       url:wxurl,
       headers:JSON.parse(wxhd),
       timeout:600};
-
-     
      
   $iosrule.get(llUrl1,function(error, response, data) {
-if(log==1)console.log(JSON.stringify(data))
+//if(log==1)console.log(JSON.stringify(data))
 var obj=JSON.parse(data);
 if(obj.status==1)
 result2="打卡成功!✅";
@@ -116,13 +98,17 @@ else if(obj.status==2)
 result2=obj.info;
 else
 result2="UFO📛🎏❎,面壁思过吧";
-result2+="["+result1+"]"+result2+"\n";
+result2="["+result1+"]"+result2+"\n";
+
 resolve(result2);
 })
 })}
 
   
- 
+
+   
+   
+
 
 
 function iosrule_getck() {
@@ -144,8 +130,6 @@ for(var i in mit)
 }
  var sk= $iosrule.write(urlval,wxurlname);
  var sl= $iosrule.write(JSON.stringify(md_hd),wxhdname);
-
-
 if (sk==true&&sl==true) 
  papa(tt[temp],"[获取打卡数据]","✌🏻成功");}
 
@@ -158,7 +142,9 @@ if (sk==true&&sl==true)
 
 
 
-
+function main()
+{
+iosrule_begin();}
 
 
 
@@ -171,6 +157,13 @@ function getRandom(start, end, fixed = 0) {
   return (start + differ * random).toFixed(fixed)
 }
 
+if ($iosrule.isRequest) {
+  iosrule_getck()
+  $iosrule.end()
+} else {
+  main();
+  $iosrule.end()
+ }
 
 
 
