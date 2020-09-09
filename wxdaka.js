@@ -3,7 +3,7 @@
 by红鲤鱼绿鲤鱼与驴
 
 
-2020.9.9增加1个,请及时更新重写命令。教程:https://mp.weixin.qq.com/s/YjTgTToPEeX1infR1vTwHg
+2020.9.9增加2个,共计5个。请及时更新重写命令和mit。教程:https://mp.weixin.qq.com/s/YjTgTToPEeX1infR1vTwHg
 
 
 #欢迎微信撸金币群提出靠谱打卡小程序方便更新。远程库订阅
@@ -11,22 +11,22 @@ https://raw.githubusercontent.com/wangdelu2020/hongliyu/master/wxdaka.js
 
 
 #QX 远程订阅微信签到打卡小程序App签到
-https:\/\/(www\.baimaa\.com|www\.2xtj7\.cn|www\.hnmiaosu\.cc|ph0001\.hezyq\.com)\/app\/index\.php? url script-request-header https://raw.githubusercontent.com/wangdelu2020/hongliyu/master/wxdaka.js
+https:\/\/(www\.baimaa\.com|www\.2xtj7\.cn|www\.hnmiaosu\.cc|ph0001\.hezyq\.com|wq\.02gk\.com)\/app\/index\.php? url script-request-header https://raw.githubusercontent.com/wangdelu2020/hongliyu/master/wxdaka.js
 
 
 
-#定时
-0 2,13,25,45,55 0-23 * * ? wxdaka.js, tag=微信小程序打卡签到, enabled=false
+#定时(远程订阅)
+0 2,13,25,45,55 0-23 * * ? https://raw.githubusercontent.com/wangdelu2020/hongliyu/master/wxdaka.js, tag=微信小程序打卡签到, enabled=false
 
-mit=www.2xtj7.cn,www.baimaa.com,www.hnmiaosu.cc,ph0001.hezyq.com
+mit=www.2xtj7.cn,www.baimaa.com,www.hnmiaosu.cc,ph0001.hezyq.com,wq.02gk.com
 
 //====================================
 
 #loon 微信签到打卡小程序App签到
 
-http-request https:\/\/(www\.baimaa\.com|www\.2xtj7\.cn|www\.hnmiaosu\.cc|ph0001\.hezyq\.com)\/app\/index\.php? script-path=https://raw.githubusercontent.com/wangdelu2020/hongliyu/master/wxdaka.js, requires-header=true, timeout=30, tag=微信打卡小程序
+http-request https:\/\/(www\.baimaa\.com|www\.2xtj7\.cn|www\.hnmiaosu\.cc|ph0001\.hezyq\.com|wq\.02gk\.com)\/app\/index\.php? script-path=https://raw.githubusercontent.com/wangdelu2020/hongliyu/master/wxdaka.js, requires-header=true, timeout=30, tag=微信打卡小程序
 
-mit=www.2xtj7.cn,www.baimaa.com,www.hnmiaosu.cc,ph0001.hezyq.com
+mit=www.2xtj7.cn,www.baimaa.com,www.hnmiaosu.cc,ph0001.hezyq.com,wq.02gk.com
 
 #定时间隔5分
 
@@ -42,8 +42,8 @@ const $iosrule = iosrule();
 
 const log=1;//设置0关闭日志,1开启日志
 
-var mit=["www.2xtj7.cn","www.baimaa.com","www.hnmiaosu.cc","ph0001.hezyq.com"];
-var tt=["小打卡赚钱(20次打卡)","音乐line(10次)"," 天天打卡赚赚(9次)","天天打卡赚钱(20次)"];
+var mit=["www.2xtj7.cn","www.baimaa.com","www.hnmiaosu.cc","ph0001.hezyq.com","wq.02gk.com"];
+var tt=["小打卡赚钱花(20次打卡)","音乐line(10次)"," 天天(每天早起)打卡赚赚(9次)","天天打卡赚钱(20次)","陀螺打卡(12次)"];
 
 
 //++++++++++++++++++++++++++++++++-
@@ -70,7 +70,9 @@ let s0=await iosrule_sign(0);
 let s1=await iosrule_sign(1);
 let s2=await iosrule_sign(2);
 let s3=await iosrule_sign(3);
- papa(weixin_iosrule,"",s0+s1+s2+s3);
+let s4=await iosrule_sign(4);
+
+ papa(weixin_iosrule,"",s0+s1+s2+s3+s4);
    
 }
 
