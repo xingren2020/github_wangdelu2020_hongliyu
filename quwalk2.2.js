@@ -12,23 +12,28 @@ https://raw.githubusercontent.com/wangdelu2020/hongliyu/master/quwalk2.2.js
 2020.8.7 修复很多bug
 2020.8.27 增加跑步,20200901修复字符
 2020.8.28 增加每日5000步挑战
-2020.9.6 增加签到分享奖励和签到页随机获取趣币(有次数限制)
+2020.9.6 增加签到分享奖励和签到页随机获取趣币(有次数限制)9.7增加每日任务分享奖励
 
 //=================================
-#圈叉趣走App签到
-https:\/\/mobile01\.91quzou\.com\/rebate\/qz\/task\/homeTaskView\.do url script-request-header quwalk2.2.js
+#圈叉趣走App签到(远程库)
+https:\/\/mobile01\.91quzou\.com\/rebate\/qz\/task\/homeTaskView\.do url script-request-header https://raw.githubusercontent.com/wangdelu2020/hongliyu/master/quwalk2.2.js
 
 
 mit=mobile01.91quzou.com
 
+
+#定时参考
+0 35,50 0-24 * * ? https://raw.githubusercontent.com/wangdelu2020/hongliyu/master/quwalk2.2.js, tag=趣走尊享版签到, enabled=true
 //====================================
 
-#loon 趣走App签到
-http-request https:\/\/mobile01\.91quzou\.com\/rebate\/qz\/task\/homeTaskView\.do script-path=quwalk2.2.js, requires-body=true, timeout=30, tag=趣走签到
+#loon 趣走App签到(远程库)
+http-request https:\/\/mobile01\.91quzou\.com\/rebate\/qz\/task\/homeTaskView\.do script-path=https://raw.githubusercontent.com/wangdelu2020/hongliyu/master/quwalk2.2.js, requires-body=true, timeout=30, tag=趣走签到
 
 mit=mobile01.91quzou.com
 
 #定时签到
+
+小白重写配置教程:https://mp.weixin.qq.com/s/YjTgTToPEeX1infR1vTwHg
 
 */
 
@@ -282,6 +287,8 @@ function quwalk_dailytask(qq)
   var r5="[每日任务1000步奖励]";
   var r6="[每日任务浏览商品180秒奖励]";
   var r7="[每日任务7500步奖励]";
+  var r8="[每日任务邀请好友5000步奖励❤️]";
+  var r9="[每日任务10000步奖励❤️❤️]"
   var bd1=`pageType=&taskId=FCLTQOVE&type=1`;
  var tsbd1=`completedMethod=0&pageType=&taskId=FCLTQOVE&type=1`;
 var bd2=`pageType=&taskId=TU232QYQ`;
@@ -298,9 +305,12 @@ var bd4=`pageType=&taskId=HUYTYIIS&type=1`;
   var tsbd6=`category=SHOPPING_PAGE&type=1&`;
   var bd7=`pageType=&taskId=91T7AZP6&type=1`;
     var tsbd7=`completedMethod=0&pageType=&taskId=91T7AZP6&type=1`;
+     var bd8=`pageType=&taskId=HAPKE6L4&type=1`;
+     var bd9=`pageType=&taskId=CF8M7VBH&type=1`;
+     
+     
   
-  
-  for (var i = 0; i < 8; i++) {
+  for (var i = 0; i < 9; i++) {
       (function(i) {
         setTimeout(function() {
           
@@ -343,6 +353,23 @@ var bd4=`pageType=&taskId=HUYTYIIS&type=1`;
 
                                  
 }
+
+ else if (i==7)
+{
+quwalk_r8share();
+  quwalk_daytaskreceive(r8,bd8);
+
+                                 
+}
+else if (i==8)
+{
+
+  quwalk_daytaskreceive(r9,bd9);
+
+                                 
+}
+
+
           
          }, (i + 1) * 500);
               })(i)
@@ -352,6 +379,13 @@ var bd4=`pageType=&taskId=HUYTYIIS&type=1`;
   
   
 }
+function quwalk_r8share()
+{
+const llUrl2={
+        url:"https://mobile01.91quzou.com/activity/shareCallback.do",headers:JSON.parse(quwalk_hd)}
+
+  $iosrule.post(llUrl2,function(error, response, data) {})}
+
 
 function quwalk_homeTaskView()
 {var result2="";var result1="[首页视频奖励查询]";
@@ -378,7 +412,7 @@ function quwalk_daytaskreceive(title,bd)
         url:"https://mobile01.91quzou.com/rebate/qz/task/receive.do",headers:JSON.parse(quwalk_hd),body:bd}
 
   $iosrule.post(llUrl2,function(error, response, data) {
-    if(log==1)console.log(title+"\n"+data)
+        if(log==1)console.log(title+"\n"+data)
   var obj=JSON.parse(data);
 if(obj.code=="0")
 result2="获取步数"+obj.data.amount;
