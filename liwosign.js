@@ -6,6 +6,7 @@ by红鲤鱼绿鲤鱼与驴
 
 
 基础教程:https://mp.weixin.qq.com/s/YjTgTToPEeX1infR1vTwHg
+https://mp.weixin.qq.com/s/zF9lylHflXtbayi2jUg0UA
 
 
 #远程库订阅
@@ -123,7 +124,7 @@ const llUrl1={
 $iosrule.post(llUrl1,function(error, response, data) {
 var obj=JSON.parse(data);
 if(obj.status==true)
-result2=result1+obj.data.signSummaryTitle+"🧧"+obj.data.activityName+"💰"+obj.data.currentAmount+"元";
+result2=result1+obj.data.signSummaryTitle+"🧧"+obj.data.activityName+""+obj.data.currentAmount+"元,总金额"+obj.data.amount+"元,上次签到时间:"+obj.data.lastSignTime;
 resolve(result2);
 })
 })}
