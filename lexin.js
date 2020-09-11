@@ -69,7 +69,6 @@ const lexin_iosrule="乐❤️健康";
 
  async function iosrule_begin()
  {
-;
 
 
  papa(lexin_iosrule,"",await iosrule_sign());
