@@ -5,7 +5,7 @@ by红鲤鱼绿鲤鱼与驴
 
 2020.9.9增加2个,共计5个。
 2020.9.10增加1个,共计6个。
-2020.9.11更新提现
+2020.9.15更新提现
 
 
 请及时更新重写命令和mit。
@@ -36,7 +36,7 @@ http-request https:\/\/(www\.baimaa\.com|www\.2xtj7\.cn|www\.hnmiaosu\.cc|ph0001
 
 mit=www.2xtj7.cn,www.baimaa.com,www.hnmiaosu.cc,ph0001.hezyq.com,wq.02gk.com,dk.ne72.com
 
-#定时间隔30分
+"定时间隔(去括号)  0 *(/)5 0-2 * * ?
 
 #点击打卡获取ck。
 #点击打卡获取ck。
@@ -47,8 +47,8 @@ const $iosrule = iosrule();
 const log=1;//设置0关闭日志,1开启日志
 const getck=1;//设置0关闭获取ck,1开启获取ck
 
-var mit=["www.2xtj7.cn","www.baimaa.com","www.hnmiaosu.cc","ph0001.hezyq.com","wq.02gk.com","dk.ne72.com"];
-var tt=["小打卡赚钱花(20次)","音乐line(10次)"," 天天(每天早起)打卡赚赚(9次)","天天打卡赚钱(20次)","陀螺打卡(12次)","天天早起打卡哦(50次)"];
+var mit=["www.2xtj7.cn","www.baimaa.com","www.hnmiaosu.cc","ph0001.hezyq.com","wq.02gk.com","dk.ne72.com","ph0001.hezyq.com"];
+var tt=["小打卡赚钱花(20次)","音乐line(10次)"," 天天(每天早起)打卡赚赚(9次)","天天打卡赚钱(20次)","陀螺打卡(12次)","天天早起打卡哦(50次)","爱尚每日打卡(20次)"];
 
 //自己增加mit代码中mit tt变量， 同时QX和loon重写命令和mit也要增加打卡程序的域名
 
@@ -108,11 +108,19 @@ const weixin_iosrule=tt.length+"个微信小程序打卡集成";
  {
 
  console.log(weixin_iosrule+"运行中,完成✅程序需要"+tt.length*2+"秒")
- let wx=await iosrule_mycash(i);
-let temcash=wx.substring(wx.indexOf("💰")+2,wx.length-1);
+let wx,tempcash,sg,ls;
+try{ wx=await iosrule_mycash(i);
 
-all+=await iosrule_sign(i)+wx+await iosrule_withdrawals(i,temcash);
-i++;
+temcash=wx.substring(wx.indexOf("💰")+2,wx.length-1);
+sg=await iosrule_sign(i);
+ls=await iosrule_withdrawals(i,temcash);
+}
+catch(error)
+{
+  console.log(error)
+} finally{
+  all+=sg+wx+ls;
+ i++;
  if(i<tt.length)
       {
         
@@ -121,18 +129,7 @@ iosrule_begin(i);
 
      }, 1 * 1000);
 
-} else
-
-
-{
-
-
-
-
-
-
-
- papa(weixin_iosrule,"",all);}
+} else papa(weixin_iosrule,"",all);}
    
 }
 
@@ -171,6 +168,7 @@ result2=obj.info;
 else
 result2="UFO📛🎏❎,面壁思过吧";
 result2=tt.length+"-"+(t+1)+"["+result1+"]\n"+`  `+result2+"\n";
+console.log(result2);
 
 resolve(result2);
 })
