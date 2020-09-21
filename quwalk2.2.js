@@ -27,7 +27,7 @@ mit=mobile01.91quzou.com
 
 
 #定时参考
-0 35,50 0-24 * * ? https://raw.githubusercontent.com/wangdelu2020/hongliyu/master/quwalk2.2.js, tag=趣走尊享版签到, enabled=true
+0 35,50 0-23 * * ? https://raw.githubusercontent.com/wangdelu2020/hongliyu/master/quwalk2.2.js, tag=趣走尊享版签到, enabled=true
 //====================================
 
 #loon 趣走App签到(远程库)
