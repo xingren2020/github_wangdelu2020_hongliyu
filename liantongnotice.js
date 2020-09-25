@@ -91,11 +91,11 @@ const user_url={
 try{
 var obj=JSON.parse(data);
 
-result2=obj.flush_date_time;
+result2=obj.flush_date_time+"\n";
 for(let i=0;i<obj.data.dataList.length;i++){
   
  let list=obj.data.dataList[i];
-  result2+=`\n【${list.remainTitle}】${list.number}${list.unit}  ${list.usedTitle}\n`;
+  result2+=`【${list.remainTitle}】${list.number}${list.unit}  ${list.usedTitle}%\n`;
   
 }
 
@@ -155,7 +155,7 @@ result2+="【积分】"+obj.data.integralTotal+"✅";
   console.log(err);
 } finally{
 console.log(result2+"\n");
-resolve(result2+"\n");
+resolve("\n"+result2+"\n");
 }
 })}
 })}
@@ -283,7 +283,6 @@ function iosrule() {
     }
     return { isRequest, isQuanX, isSurge, notify, write, read, get, post, end }
 };
-
 
 
 
