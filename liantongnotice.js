@@ -12,7 +12,7 @@ https://raw.githubusercontent.com/wangdelu2020/hongliyu/master/liantongnotice.js
 https:\/\/m.client\.10010\.com\/mobileService\/home\/queryUserInfoSeven\.htm? url script-request-header liantongnotice.js
 
 #定时(远程订阅)6点到24点 30分提醒一次
-0 30 6-23 * * ? newLianTongchaohua.js, tag=联通流量话费提醒, enabled=true
+0 30 6-23 * * ? liantongnotice.js, tag=联通流量话费提醒, enabled=true
 
 mit=m.client.10010.com
 
@@ -95,7 +95,7 @@ result2=obj.flush_date_time+"\n";
 for(let i=0;i<obj.data.dataList.length;i++){
   
  let list=obj.data.dataList[i];
-  result2+=`【${list.remainTitle}】${list.number}${list.unit}  ${list.usedTitle}%\n`;
+  result2+=`【${list.remainTitle}】${list.number}${list.unit}  ${list.usedTitle}\n`;
   
 }
 
