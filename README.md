@@ -1,3 +1,6 @@
+
+![wangdelu2020’s github stats](https://github-readme-stats.vercel.app/api?username=wangdelu2020&show_icons=true&theme=vue)
+
 关注微信公众号iosrule和微信群 
 两个QQ群
 QQ群559544370
