@@ -2,7 +2,7 @@ name: 测试
 
 on:
   schedule:
-    - cron: '*/30 * * * * '
+    - cron: '*/40 * * * * '
   watch:
     types: [started]
 jobs:
@@ -21,7 +21,7 @@ jobs:
         run: pip install -r ./requirements.txt 
         
       - name: 'run 测试' 
-        run: python3 cs.py 
+        run: python3 xmly1.py 
         env:
             XMLY_SPEED_COOKIE: ${{ secrets.XMLY_SPEED_COOKIE }}
     
