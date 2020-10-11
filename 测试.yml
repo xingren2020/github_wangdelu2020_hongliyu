@@ -24,4 +24,7 @@ jobs:
         run: python3 xmly1.py 
         env:
             XMLY_SPEED_COOKIE: ${{ secrets.XMLY_SPEED_COOKIE }}
+            XMLY_BARK_COOKIE: ${{ secrets.XMLY_BARK_COOKIE }}
     
+
+   
