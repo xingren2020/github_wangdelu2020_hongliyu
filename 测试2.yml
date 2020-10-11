@@ -23,5 +23,6 @@ jobs:
       - name: 'run 测试2' 
         run: python3 cs.py 
         env:
-            XMLY_SPEED_COOKIE: ${{ secrets.XMLY_SPEED_COOKIE }}
+             XMLY_SPEED_COOKIE: ${{ secrets.XMLY_SPEED_COOKIE }}
+             XMLY_BARK_COOKIE: ${{ secrets.XMLY_BARK_COOKIE }}
     
