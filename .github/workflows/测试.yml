@@ -1,4 +1,4 @@
-name: 测试
+name: 测试3
 
 on:
   schedule:
@@ -20,7 +20,7 @@ jobs:
       - name: 'Install requirements'
         run: pip install -r ./requirements.txt 
         
-      - name: 'run 测试' 
+      - name: 'run 测试3' 
         run: python3 xmly1.py 
         env:
             XMLY_SPEED_COOKIE: ${{ secrets.XMLY_SPEED_COOKIE }}
