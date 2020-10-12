@@ -830,15 +830,10 @@ def account(cookies):
         'https://m.ximalaya.com/speed/web-earn/account/coin', headers=headers, cookies=cookies)
     result = response.json()
     print(result)
-    print(f"""
-当前剩余:{result["total"]/10000}
-今日获得:{result["todayTotal"]/10000}
-累计获得:{result["historyTotal"]/10000}
-
-""")
+    iosrule=f"""当前剩余:{result["total"]/10000}今日获得:{result["todayTotal"]/10000}累计获得:{result["historyTotal"]/10000}"""
+    print(iosrule)
     if xmly_bark_cookie.strip():
-       iosrule=f"""当前剩余:{result["total"]/10000}今日获得:{result["todayTotal"]/10000}累计获得:{result["historyTotal"]/10000}"""
-    purl = "https://api.day.app/"+xmly_bark_cookie+"/喜马拉雅极速/"+iosrule
+       purl = "https://api.day.app/"+xmly_bark_cookie+"/喜马拉雅极速/"+iosrule
     response = requests.post(purl)
     print(response.text)
     
