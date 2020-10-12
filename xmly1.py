@@ -71,7 +71,7 @@ print("今日已过秒数: ", date_stamp)
 print("当前时间戳", mins)
 
 if "XMLY_BARK_COOKIE" in os.environ:
-    xmly_bark_cookie = os.environ["XMLY_bark_COOKIE"]
+    xmly_bark_cookie = os.environ["XMLY_BARK_COOKIE"]
 
 def listenData(cookies):
     headers = {
