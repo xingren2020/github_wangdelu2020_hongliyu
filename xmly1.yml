@@ -1,5 +1,6 @@
 import requests
 import json
+import rsa
 import base64
 import time
 from itertools import groupby
@@ -43,12 +44,34 @@ def str2dict(str_cookie):
     return dict_cookie
 
 
-def checkck():
+
+
+if "XMLY_SPEED_COOKIE" in os.environ:
+    """
+    判断是否运行自GitHub action,"XMLY_SPEED_COOKIE" 该参数与 repo里的Secrets的名称保持一致
+    """
     print("执行自GitHub action")
+    xmly_speed_cookie = os.environ["XMLY_SPEED_COOKIE"]
+    cookiesList = []  # 重置cookiesList
+    for line in xmly_speed_cookie.split('\n'):
+        if not line:
+            continue 
+        cookiesList.append(line)
 
-  
+if not cookiesList[0]:
+    print("cookie为空 跳出X")
+    exit()
+mins = int(time.time())
+date_stamp = (mins-57600) % 86400
+#print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+print(datetime.now(tz=tz.gettz('Asia/Shanghai')).strftime("%Y-%m-%d %H:%M:%S", ))
+_datatime = datetime.now(tz=tz.gettz('Asia/Shanghai')).strftime("%Y%m%d", )
+print(_datatime)
+print("今日已过秒数: ", date_stamp)
+print("当前时间戳", mins)
 
-
+if "XMLY_BARK_COOKIE" in os.environ:
+    xmly_bark_cookie = os.environ["XMLY_bark_COOKIE"]
 
 def listenData(cookies):
     headers = {
@@ -813,14 +836,11 @@ def account(cookies):
 累计获得:{result["historyTotal"]/10000}
 
 """)
-if "XMLY_Bark_COOKIE" in os.environ:
-    xmly_bark_cookie = os.environ["XMLY_Bark_COOKIE"]
+if xmly_bark_cookie.strip():
     iosrule=f"""当前剩余:{result["total"]/10000}今日获得:{result["todayTotal"]/10000}累计获得:{result["historyTotal"]/10000}"""
-    purl = "https://api.day.app/"+xmly_bark_cookie+"/喜马拉雅极速/"+iosrule
+    purl = "https://api.day.app/xmly_bark_cookie/喜马拉雅极速/"+iosrule
     response = requests.post(purl)
     print(response.text)
-    
-    
     
 def saveListenTime(cookies):
     headers = {
@@ -887,8 +907,11 @@ def main(cookies):
 
     print("\n")
 
-checkck()
+
 for i in cookiesList:
     print(">>>>>>>>>【账号开始】")
     cookies = str2dict(i)
-    print(cookies)
+    uid = cookies["1&_token"].split("&")[0]
+    uuid = cookies["XUM"]
+    main(cookies)
+    account(cookies)
