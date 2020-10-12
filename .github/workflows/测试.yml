@@ -1,0 +1,30 @@
+name: 测试
+
+on:
+  schedule:
+    - cron: '*/40 * * * * '
+  watch:
+    types: [started]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: 'Set up Python'
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+         
+      - name: 'Install requirements'
+        run: pip install -r ./requirements.txt 
+        
+      - name: 'run 测试' 
+        run: python3 xmly1.py 
+        env:
+            XMLY_SPEED_COOKIE: ${{ secrets.XMLY_SPEED_COOKIE }}
+            XMLY_BARK_COOKIE: ${{ secrets.XMLY_BARK_COOKIE }}
+    
+
+   
