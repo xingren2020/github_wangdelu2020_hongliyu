@@ -1,0 +1,29 @@
+name: 腾讯新闻20201013
+
+on:
+  schedule:
+    - cron: '*/15 * * * * '
+  watch:
+    types: [started]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: 'Set up Python'
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7 
+        
+      - name: 'run 腾讯新闻20201013' 
+        run: python3 txnews.py 
+        env:
+            TXNEWS_COUNT_COOKIE: ${{ secrets.TXNEWS_COUNT_COOKIE }}
+            TXNEWS_READ_COOKIE: ${{ secrets.TXNEWS_READ_COOKIE }}
+            TXNEWS_VIDEO_COOKIE: ${{ secrets.TXNEWS_VIDEO_COOKIE }}
+            TXNEWS_BARK_COOKIE: ${{ secrets.TXNEWS_BARK_COOKIE }}
+    
+
+   
