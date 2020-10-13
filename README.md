@@ -13,3 +13,12 @@ tg频道https://t.me/iosrule
 
 
 by 红鲤鱼与绿鲤鱼与驴  2020.8.30
+
+
+2020.10.13 Github学习小记:
+
+感谢大佬NobyDa让我接触到js,学会写第一个js脚本。
+https://github.com/NobyDa
+
+感谢大佬Zero-S1让我有了学习py的兴趣,学会写第一个的py代码。
+https://github.com/Zero-S1
