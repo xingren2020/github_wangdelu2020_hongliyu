@@ -18,7 +18,7 @@ jobs:
           python-version: 3.7 
         
       - name: 'run 腾讯新闻20201013' 
-        run: python3 txnews.py 
+        run: python3 ./txnews/txnews.py 
         env:
             TXNEWS_COUNT_COOKIE: ${{ secrets.TXNEWS_COUNT_COOKIE }}
             TXNEWS_READ_COOKIE: ${{ secrets.TXNEWS_READ_COOKIE }}
