@@ -11,7 +11,7 @@ from datetime import datetime
 from dateutil import tz
 import os
 
-# 喜马拉雅极速版
+# 喜马拉雅极速版加了bark通知，作者github https://github.com/Zero-S1/xmly_speed
 # 使用参考 xmly_speed.md
 # cookies填写
 
