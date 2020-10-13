@@ -1,8 +1,8 @@
-name: 测试3
+name: 喜马拉雅极速20201010
 
 on:
   schedule:
-    - cron: '*/40 * * * * '
+    - cron: '*/30 * * * * '
   watch:
     types: [started]
 jobs:
@@ -20,8 +20,8 @@ jobs:
       - name: 'Install requirements'
         run: pip install -r ./requirements.txt 
         
-      - name: 'run 测试3' 
-        run: python3 xmly1.py 
+      - name: 'run 喜马拉雅极速20201010' 
+        run: python3 xmly20201010.py 
         env:
             XMLY_SPEED_COOKIE: ${{ secrets.XMLY_SPEED_COOKIE }}
             XMLY_BARK_COOKIE: ${{ secrets.XMLY_BARK_COOKIE }}
