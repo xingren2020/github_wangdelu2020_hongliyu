@@ -157,15 +157,14 @@ if flag == True:
    Cookie=txnews_countListst[0]
 else:
     Cookie=txnews_countListst[1]
-    print('>>>>>>>>>【🍋开始】'+str(start)+'篇')
-    tx_ck1=read_cookiesList[start]
-    tx_ck2=video_cookiesList[start]
-    tx_user(Cookie)
-    tx_signday(Cookie)
-    tx_read(Cookie,tx_ck1)
-    tx_video(Cookie,tx_ck2)
-    tx_task(Cookie,tx_ck1)
-    tx_wallet(Cookie)
-    showmsg(tt,result)
-    result=''
-    time.sleep(5)
+print('>>>>>>>>>【🍋开始】'+str(start)+'篇')
+tx_ck1=read_cookiesList[start]
+tx_ck2=video_cookiesList[start]
+tx_user(Cookie)
+tx_signday(Cookie)
+tx_read(Cookie,tx_ck1)
+tx_video(Cookie,tx_ck2)
+tx_task(Cookie,tx_ck1)
+tx_wallet(Cookie)
+showmsg(tt,result)
+ 
