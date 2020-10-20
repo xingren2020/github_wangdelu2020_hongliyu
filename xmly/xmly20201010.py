@@ -291,10 +291,11 @@ def lottery_info(cookies):
                                  headers=headers, cookies=cookies, data=json.dumps(data))
         result = json.loads(response.text)
         print("chance", result)
-        data = {
+        try:
+           data = {
             "sign": rsa_encrypt(str(result["data"]["chanceId"]), pubkey_str),
         }
-        try:
+        
            response = requests.post('https://m.ximalaya.com/speed/web-earn/inspire/lottery/action',
                                  headers=headers, cookies=cookies, data=json.dumps(data))
            print("action", response.text)
