@@ -294,9 +294,12 @@ def lottery_info(cookies):
         data = {
             "sign": rsa_encrypt(str(result["data"]["chanceId"]), pubkey_str),
         }
-        response = requests.post('https://m.ximalaya.com/speed/web-earn/inspire/lottery/action',
+        try:
+           response = requests.post('https://m.ximalaya.com/speed/web-earn/inspire/lottery/action',
                                  headers=headers, cookies=cookies, data=json.dumps(data))
-        print("action", response.text)
+           print("action", response.text)
+        except Exception as e:
+           print("action", str(e))
 
 
 def task_label(cookies):
