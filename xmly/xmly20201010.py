@@ -27,6 +27,7 @@ cookiesList = [cookies1, ]  # 多账号准备
 
 
 
+xmly_bark_cookie='azjFQzUeTG5hVYx7cRJRTU'
 UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 13_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 iting/1.0.12 kdtunion_iting/1.0 iting(main)/1.0.12/ios_1"
 # 非iOS设备的需要的自行修改,自己抓包 与cookie形式类似
 
@@ -45,18 +46,18 @@ def str2dict(str_cookie):
 
 
 
-
+iosrule=''
 if "XMLY_SPEED_COOKIE" in os.environ:
     """
     判断是否运行自GitHub action,"XMLY_SPEED_COOKIE" 该参数与 repo里的Secrets的名称保持一致
     """
     print("执行自GitHub action")
-    xmly_speed_cookie = os.environ["XMLY_SPEED_COOKIE"]
+    xmly_speed_cookie =os.environ["XMLY_SPEED_COOKIE"]
     cookiesList = []  # 重置cookiesList
     for line in xmly_speed_cookie.split('\n'):
-        if not line:
-            continue 
-        cookiesList.append(line)
+      if not line:
+       continue 
+      cookiesList.append(line)
 
 if not cookiesList[0]:
     print("cookie为空 跳出X")
@@ -834,12 +835,11 @@ def account(cookies):
         'https://m.ximalaya.com/speed/web-earn/account/coin', headers=headers, cookies=cookies)
     result = response.json()
     print(result)
-    iosrule=f"""当前剩余:{result["total"]/10000}今日获得:{result["todayTotal"]/10000}累计获得:{result["historyTotal"]/10000}"""
-    print(iosrule)
-    if xmly_bark_cookie.strip():
-       purl = "https://api.day.app/"+xmly_bark_cookie+"/喜马拉雅极速/"+iosrule
-    response = requests.post(purl)
-    print(response.text)
+    global iosrule
+    global j
+    iosrule+=f"""【账号{j}】当前剩余:{result["total"]/10000}今日获得:{result["todayTotal"]/10000}累计获得:{result["historyTotal"]/10000}"""+'\n'
+    
+
     
 def saveListenTime(cookies):
     headers = {
@@ -865,9 +865,51 @@ def saveListenTime(cookies):
                              headers=headers, cookies=cookies, data=data)
     print(response.text)
 
+def dati_taskrecord(cookies):
+    headers = {
+        'User-Agent': UserAgent,
 
-##################################################################
+    }
+    response = requests.get('https://m.ximalaya.com/speed/web-earn/task/record?taskLabels=4&showReceived=true',
+                            headers=headers, cookies=cookies)
+    result = response.json()
+    #print(response.text)
+    if len(result['taskList'])>0:
+       for ls in result['taskList']:
+         if ls['taskRecordId']>0:
+           response = requests.post('https://m.ximalaya.com/speed/web-earn/task/receive/'+str(ls['taskRecordId']),
+                           headers=headers, cookies=cookies)
+           print(response.text)
+           
+def homehourred(cookies):
+    headers = {
+        'User-Agent': UserAgent,}
+    currentTimeMillis = int(time.time()*1000)-2
+    response = requests.get(f'http://mobile.ximalaya.com/pizza-category/activity/getAward?activtyId=indexSegAward&ballKey={uid}&currentTimeMillis={currentTimeMillis}&sawVideoSignature={currentTimeMillis}+{uid}&version=2',
+                            headers=headers, cookies=cookies)
 
+    print(response.text)
+    result = response.json()
+    for num in range(1,7):
+       xg=time.strftime("%Y%m%d", time.localtime())
+       response = requests.get(f'http://mobile.ximalaya.com/pizza-category/activity/awardMultiple?activtyId=indexSegAward&awardReceiveId={uid}-{xg}-6-{num}',
+                            headers=headers, cookies=cookies)
+       result = response.json()
+       print(response.text)
+def pushmsg():
+  if xmly_bark_cookie.strip():
+    purl = f'https://api.day.app/{xmly_bark_cookie}/喜马拉雅极速/{iosrule}'
+    response = requests.post(purl)
+    print(response.text)
+ 
+    
+	
+	
+	
+	
+	
+	
+	
 
 
 def main(cookies):
@@ -876,10 +918,12 @@ def main(cookies):
     listenData(cookies)
     saveListenTime(cookies)
     card(cookies)
-    hand(cookies)
+    #hand(cookies)
+    dati_taskrecord(cookies)
+    homehourred(cookies)
     reportTime(cookies)
     getOmnipotentCard(cookies)
-    stage_(cookies)
+    #stage_(cookies)
     bubble(cookies)
     checkin(cookies)
     print("\n【答题】")
@@ -906,11 +950,16 @@ def main(cookies):
 
     print("\n")
 
-
+j=0
 for i in cookiesList:
-    print(">>>>>>>>>【账号开始】")
+    j+=1
+    print(">>>>>>>>>【账号"+str(j)+"开始】")
     cookies = str2dict(i)
     uid = cookies["1&_token"].split("&")[0]
     uuid = cookies["XUM"]
     main(cookies)
     account(cookies)
+pushmsg()
+
+    
+    
