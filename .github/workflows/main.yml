@@ -1,0 +1,28 @@
+name: weibo20201105
+
+on:
+  schedule:
+    - cron: '*/25 14 * * * '
+  watch:
+    types: [started]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: 'Set up Python'
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+         
+      - name: 'Install requirements'
+        run: pip install -r ./weiwo/requirements.txt 
+        
+      - name: 'run weibo20201105' 
+        run: python3 ./weiwo/weiwo.py 
+        env:
+            WEIBO_SIGN_COOKIE: ${{ secrets.WEIBO_SIGN_COOKIE }}
+
+
